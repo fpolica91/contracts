@@ -1,0 +1,14 @@
+{
+  "name": "sharedWallet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:deploy": "npx truffle deploy --reset",
+    "compile": "npx truffle compile", 
+    "dev:console": "npx truffle console"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.1.0"
+  }
+}
