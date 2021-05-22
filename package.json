@@ -5,10 +5,13 @@
   "license": "MIT",
   "scripts": {
     "dev:deploy": "npx truffle deploy --reset",
-    "compile": "npx truffle compile", 
+    "compile": "npx truffle compile",
     "dev:console": "npx truffle console"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.1.0"
+  },
+  "devDependencies": {
+    "solc": "^0.8.4"
   }
 }

@@ -8,7 +8,7 @@ contract Allowance is Ownable{
   using SafeMath for uint;
   mapping(address => uint) public allowance;
 
- event AllowanceChanged(address indexed _to, address indexed _from, uint _amount);
+ event AllowanceChanged(address indexed _to, address indexed _from, uint _currentAmount, uint _amount);
 
   function isOwner() internal view returns(bool){ 
      return  owner() == msg.sender;
@@ -20,17 +20,16 @@ contract Allowance is Ownable{
   }
 
   function setAllowance(address _to, uint _amount) public onlyOwner {
+      uint currentAmount = allowance[_to];
       allowance[_to] = allowance[_to].add(_amount);
-      emit AllowanceChanged(_to, msg.sender, _amount);
+      emit AllowanceChanged(_to, msg.sender, currentAmount, _amount);
   }
 
   function reduceAllowance(address _to, uint _amount) internal ownerOrAllowed(_amount){
+    uint currentAmount = allowance[_to];
     allowance[_to] = allowance[_to].sub(_amount);
-     emit AllowanceChanged(_to, msg.sender, _amount);
+     emit AllowanceChanged(_to, msg.sender, currentAmount, _amount);
   }
-    receive() external payable {
-       
-    }
 
 }
 // contract.sendTransaction({from: accounts[1], value: web3.utils.toWei("1", 'ether')})
